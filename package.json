@@ -19,6 +19,12 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "concurrently -r \"yarn tslint -p tsconfig.json\" \"yarn tsc --noEmit\" \"yarn test\"",
+      "post-merge": "yarn"
+    }
+  },
   "dependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
@@ -39,6 +45,7 @@
     "@types/node": "^10.12.18",
     "@types/supertest": "^2.0.7",
     "concurrently": "^4.1.0",
+    "husky": "^3.0.0",
     "jest": "24.0.0",
     "nodemon": "^1.18.9",
     "prettier": "^1.15.3",

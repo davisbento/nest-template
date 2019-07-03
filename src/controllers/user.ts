@@ -5,7 +5,6 @@ import {
   Body,
   Param,
   Delete,
-  HttpException,
   Put,
 } from '@nestjs/common';
 import { UserService } from '../services/user';

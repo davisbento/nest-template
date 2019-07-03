@@ -26,12 +26,24 @@
 
 ## Custom Template with NestJS
 
-### Includes
-
 1. Docker
 2. CRUD operations
 3. DB connection - Postgres default
 4. User entity
+
+### Getting started
+
+1. Docker (will start postgres and nest api in)
+
+```
+docker-compose up --build
+```
+
+2.
+
+```
+Now app is live in localhost:8080/api
+```
 
 ## License
 

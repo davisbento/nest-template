@@ -1,14 +1,14 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { UserDto } from '../validation/user';
 import { User } from '../entity/user.entity';
+import { UserRepository } from '../repository/user';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectRepository(UserRepository)
+    private readonly userRepository: UserRepository,
   ) {}
 
   findAll(): Promise<User[]> {
@@ -26,11 +26,7 @@ export class UserService {
   }
 
   create(model: UserDto): Promise<User> {
-    try {
-      return this.userRepository.save(model);
-    } catch (err) {
-      throw new HttpException(err.message, 500);
-    }
+    return this.userRepository.save(model);
   }
 
   async delete(id): Promise<User> {
@@ -54,8 +50,6 @@ export class UserService {
       ...user,
       ...model,
     };
-
-    console.log(userUpdated);
 
     return this.userRepository.save(userUpdated);
   }
