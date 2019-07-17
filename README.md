@@ -30,10 +30,11 @@
 2. CRUD operations
 3. DB connection - Postgres default
 4. User entity
+5. Unit test
 
 ### Getting started
 
-1. Docker (will start postgres and nest api in)
+1. Docker (will start postgres and nest api)
 
 ```
 docker-compose up --build
