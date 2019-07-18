@@ -18,11 +18,11 @@ services:
       - PORT=8080
       - REDIS_PORT=6379
       - REDIS_HOST=redis
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
+      - DBUSER=postgres
+      - DBHOST=postgres
+      - DBNAME=postgres
+      - DBPASSWORD=postgres_password
+      - DBPORT=5432
       - SECRET_KEY=IMBATMAN
       - NODE_ENV=development
     ports:
