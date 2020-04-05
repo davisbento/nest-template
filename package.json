@@ -7,12 +7,12 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "yarn eslint \"./src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "concurrently --handle-input \"wait-on dist/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
     "start:debug": "nodemon --config nodemon-debug.json",
     "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/main.js",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -53,9 +53,13 @@
     "ts-jest": "24.0.2",
     "ts-node": "8.3.0",
     "tsconfig-paths": "3.8.0",
-    "tslint": "5.18.0",
     "typescript": "3.5.3",
-    "wait-on": "^3.3.0"
+    "wait-on": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "2.26.0",
+    "@typescript-eslint/parser": "2.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-prettier": "3.1.2"
   },
   "jest": {
     "moduleFileExtensions": [

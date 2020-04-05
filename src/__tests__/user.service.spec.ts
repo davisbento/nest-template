@@ -14,9 +14,9 @@ describe('UserService', () => {
         UserService,
         {
           provide: getRepositoryToken(UserRepository),
-          useClass: UserRepository,
-        },
-      ],
+          useClass: UserRepository
+        }
+      ]
     }).compile();
 
     userService = module.get(UserService);
@@ -26,9 +26,7 @@ describe('UserService', () => {
   it('should return an array of users', async () => {
     const result = [{ id: 1, name: 'Test', email: 'test@test.com' }];
 
-    jest
-      .spyOn(userRepository, 'find')
-      .mockImplementationOnce(async () => result);
+    jest.spyOn(userRepository, 'find').mockImplementationOnce(async () => result);
 
     expect(await userService.findAll()).toBe(result);
   });
@@ -36,9 +34,7 @@ describe('UserService', () => {
   it('should return one user', async () => {
     const result = { id: 1, name: 'Test', email: 'test@test.com' };
 
-    jest
-      .spyOn(userRepository, 'findOne')
-      .mockImplementationOnce(async () => result);
+    jest.spyOn(userRepository, 'findOne').mockImplementationOnce(async () => result);
 
     expect(await userService.findOne(1)).toBe(result);
   });
@@ -46,9 +42,7 @@ describe('UserService', () => {
   it('should create one user', async () => {
     const newUser = { id: 1, name: 'Test', email: 'test@test.com' };
 
-    jest
-      .spyOn(userRepository, 'save')
-      .mockImplementationOnce(async () => newUser);
+    jest.spyOn(userRepository, 'save').mockImplementationOnce(async () => newUser);
 
     expect(await userService.create(newUser)).toBe(newUser);
   });

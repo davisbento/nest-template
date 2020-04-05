@@ -1,21 +1,22 @@
-import { Injectable, HttpException } from '@nestjs/common';
-import { UserDto } from '../validation/user';
+import { HttpException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+
 import { User } from '../entity/user.entity';
 import { UserRepository } from '../repository/user';
-import { InjectRepository } from '@nestjs/typeorm';
+import { UserDto } from '../validation/user';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserRepository)
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: UserRepository
   ) {}
 
-  findAll(): Promise<User[]> {
+  public findAll(): Promise<User[]> {
     return this.userRepository.find();
   }
 
-  async findOne(id): Promise<User> {
+  public async findOne(id): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
@@ -25,11 +26,11 @@ export class UserService {
     return user;
   }
 
-  create(model: UserDto): Promise<User> {
+  public create(model: UserDto): Promise<User> {
     return this.userRepository.save(model);
   }
 
-  async delete(id): Promise<User> {
+  public async delete(id): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
@@ -39,7 +40,7 @@ export class UserService {
     return this.userRepository.remove(user);
   }
 
-  async update(id, model: UserDto): Promise<User> {
+  public async update(id, model: UserDto): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
@@ -48,7 +49,7 @@ export class UserService {
 
     const userUpdated = {
       ...user,
-      ...model,
+      ...model
     };
 
     return this.userRepository.save(userUpdated);

@@ -1,32 +1,28 @@
 {
-	"files.exclude": {
-		"build": true,
-		"**/*.css": {
-			"when": "$(basename).scss"
-		},
-		"**/*.js": {
-			"when": "$(basename).ts"
-		},
-		"**/*?.js": {
-			"when": "$(basename).tsx"
-		},
-		"**/*.lock.json": true,
-		"**/*.map": {
-			"when": "$(basename)"
-		},
-		"**/.DS_Store": true,
-		"**/.git": true,
-		"**/.svn": true,
-		"**/.tmp": true,
-		"**/bin/**": true,
-		"**/obj/**": true
+	"editor.codeActionsOnSave": {
+		"source.fixAll.tslint": true,
+		"source.fixAll.eslint": true
 	},
-	"editor.formatOnPaste": true,
-	"editor.formatOnSave": true,
-	"editor.formatOnType": true,
+	"editor.formatOnPaste": false,
+	"editor.formatOnSave": false,
+	"editor.formatOnType": false,
+	"editor.tabSize": 2,
+	"eslint.enable": true,
+	"files.associations": {
+		".env*": "properties",
+		"apple-app-site-association": "json",
+		"Fastfile": "ruby",
+		".prettierrc": "json"
+	},
+	"files.exclude": {
+		"**/.DS_Store": true,
+		".docker-data": true,
+		"**/.git": true,
+		"**/.hg": true,
+		"**/.svn": true,
+		"**/CVS": true,
+		"dist": true
+	},
 	"typescriptHero.imports.organizeOnSave": true,
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"prettier.eslintIntegration": true,
-	"prettier.stylelintIntegration": true,
-	"prettier.tslintIntegration": true
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
