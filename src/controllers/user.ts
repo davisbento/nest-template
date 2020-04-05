@@ -13,7 +13,7 @@ export class UserController {
   }
 
   @Get(':id')
-  public async findOne(@Param('id') id) {
+  public async findOne(@Param('id') id: number) {
     return this.userService.findOne(id);
   }
 
@@ -23,12 +23,12 @@ export class UserController {
   }
 
   @Put(':id')
-  public async update(@Param('id') id, @Body() model: UserDto) {
+  public async update(@Param('id') id: number, @Body() model: UserDto) {
     return this.userService.update(id, model);
   }
 
   @Delete(':id')
-  public async delete(@Param('id') id) {
+  public async delete(@Param('id') id: number) {
     return this.userService.delete(id);
   }
 }

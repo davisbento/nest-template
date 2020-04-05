@@ -16,7 +16,7 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  public async findOne(id): Promise<User> {
+  public async findOne(id: number): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
@@ -30,7 +30,7 @@ export class UserService {
     return this.userRepository.save(model);
   }
 
-  public async delete(id): Promise<User> {
+  public async delete(id: number): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
@@ -40,7 +40,7 @@ export class UserService {
     return this.userRepository.remove(user);
   }
 
-  public async update(id, model: UserDto): Promise<User> {
+  public async update(id: number, model: UserDto): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
