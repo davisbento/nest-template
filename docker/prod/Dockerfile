@@ -3,9 +3,8 @@ FROM node:12-alpine
 WORKDIR /app
 COPY . /app
 
-RUN set -x \
-    && yarn \
-    && yarn build
+RUN npm ci
+RUN npm run release
 
 FROM node:12-alpine
 
@@ -13,14 +12,11 @@ WORKDIR /app
 
 COPY --from=0 /app/dist /app/dist
 COPY --from=0 /app/package.json /app
-COPY --from=0 /app/yarn.lock /app
+COPY --from=0 /app/package-lock.json /app
+COPY --from=0 /app/.git /app
 
-RUN set -x \
-    && apk --no-cache add tzdata \
-    && cp /usr/share/zoneinfo/Brazil/East /etc/localtime \
-    && echo Brazil/East > /etc/timezone \
-    && apk del tzdata \
-    && yarn install --prod \
-    && yarn cache clean
+RUN npm ci --production
 
-CMD node /app/dist/main.js
+EXPOSE 8080
+
+CMD node dist/main.js

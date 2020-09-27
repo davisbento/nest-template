@@ -24,5 +24,6 @@
 		"dist": true
 	},
 	"typescriptHero.imports.organizeOnSave": true,
+	"typescriptHero.imports.multiLineWrapThreshold": 120,
 	"typescript.tsdk": "node_modules/typescript/lib"
 }
