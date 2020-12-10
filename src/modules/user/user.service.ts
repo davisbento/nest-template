@@ -18,7 +18,17 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  public async findOne(id: number): Promise<User> {
+  public async findByEmail(email: string): Promise<User> {
+    const user = await this.userRepository.findOne({ email });
+
+    if (!user) {
+      throw new HttpException('User not found', 404);
+    }
+
+    return user;
+  }
+
+  public async findById(id: number): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
@@ -51,17 +61,7 @@ export class UserService {
     return { name: model.name, email: model.email };
   }
 
-  public async delete(id: number): Promise<User> {
-    const user = await this.userRepository.findOne(id);
-
-    if (!user) {
-      throw new HttpException('User not found', 404);
-    }
-
-    return this.userRepository.remove(user);
-  }
-
-  public async update(id: number, model: UserUpdateDTO): Promise<User> {
+  public async update(id: number, model: UserUpdateDTO) {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
@@ -73,6 +73,8 @@ export class UserService {
       ...model
     };
 
-    return this.userRepository.save(userUpdated);
+    await this.userRepository.save(userUpdated);
+
+    return { ...model };
   }
 }
