@@ -1,8 +1,11 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put, Req, UseGuards } from '@nestjs/common';
+import { Request } from 'express';
+import { JwtAuthGuard } from 'modules/auth/guards/jwt.guard';
 
 import { UserService } from './user.service';
 import { UserUpdateDTO } from './user.validation';
 
+@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -10,6 +13,12 @@ export class UserController {
   @Get()
   public async findAll() {
     return this.userService.findAll();
+  }
+
+  @Get('profile')
+  public async profile(@Req() req: Request) {
+    const user = req.user;
+    return this.userService.findById(user.id);
   }
 
   @Get(':id')

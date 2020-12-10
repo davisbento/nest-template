@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   public login(model: IUser) {
-    const payload = { name: model.name, sub: model.id };
+    const payload = { sub: model.id };
     return {
       accessToken: this.jwtService.sign(payload)
     };
