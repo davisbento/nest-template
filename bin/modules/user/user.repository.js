@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserRepository = void 0;
+const tslib_1 = require("tslib");
+const typeorm_1 = require("typeorm");
+const user_entity_1 = require("./user.entity");
+let UserRepository = class UserRepository extends typeorm_1.Repository {
+};
+UserRepository = tslib_1.__decorate([
+    typeorm_1.EntityRepository(user_entity_1.User)
+], UserRepository);
+exports.UserRepository = UserRepository;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXNlci5yZXBvc2l0b3J5LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL21vZHVsZXMvdXNlci91c2VyLnJlcG9zaXRvcnkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLHFDQUF1RDtBQUV2RCwrQ0FBcUM7QUFHckMsSUFBYSxjQUFjLEdBQTNCLE1BQWEsY0FBZSxTQUFRLG9CQUFnQjtDQUFHLENBQUE7QUFBMUMsY0FBYztJQUQxQiwwQkFBZ0IsQ0FBQyxrQkFBSSxDQUFDO0dBQ1YsY0FBYyxDQUE0QjtBQUExQyx3Q0FBYyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEVudGl0eVJlcG9zaXRvcnksIFJlcG9zaXRvcnkgfSBmcm9tICd0eXBlb3JtJztcblxuaW1wb3J0IHsgVXNlciB9IGZyb20gJy4vdXNlci5lbnRpdHknO1xuXG5ARW50aXR5UmVwb3NpdG9yeShVc2VyKVxuZXhwb3J0IGNsYXNzIFVzZXJSZXBvc2l0b3J5IGV4dGVuZHMgUmVwb3NpdG9yeTxVc2VyPiB7fVxuIl19

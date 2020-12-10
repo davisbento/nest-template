@@ -1,9 +1,11 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { hashPassword } from '../../global/helpers/password';
+import { UserLoginDTO, UserRegisterDTO } from '../auth/auth.validation';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
-import { UserDto } from './user.validation';
+import { UserUpdateDTO } from './user.validation';
 
 @Injectable()
 export class UserService {
@@ -26,8 +28,27 @@ export class UserService {
     return user;
   }
 
-  public create(model: UserDto): Promise<User> {
-    return this.userRepository.save(model);
+  public login(model: UserLoginDTO) {
+    console.log(model);
+  }
+
+  public async register(model: UserRegisterDTO) {
+    const user = await this.userRepository.findOne({ email: model.email });
+
+    if (user) {
+      throw new HttpException('User already exists', 409);
+    }
+
+    const hashedPassword = await hashPassword(model.password);
+
+    const newUser = new User();
+    newUser.name = model.name;
+    newUser.email = model.email;
+    newUser.password = hashedPassword;
+
+    await this.userRepository.save(newUser);
+
+    return { name: model.name, email: model.email };
   }
 
   public async delete(id: number): Promise<User> {
@@ -40,7 +61,7 @@ export class UserService {
     return this.userRepository.remove(user);
   }
 
-  public async update(id: number, model: UserDto): Promise<User> {
+  public async update(id: number, model: UserUpdateDTO): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {

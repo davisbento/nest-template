@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AccessToken = exports.TokenGuard = void 0;
+const tslib_1 = require("tslib");
+const common_1 = require("@nestjs/common");
+let TokenGuard = class TokenGuard {
+    async canActivate(context) {
+        const request = context.switchToHttp().getRequest();
+        return !!request.user;
+    }
+};
+TokenGuard = tslib_1.__decorate([
+    common_1.Injectable()
+], TokenGuard);
+exports.TokenGuard = TokenGuard;
+exports.AccessToken = common_1.createParamDecorator((data, context) => {
+    const request = context.switchToHttp().getRequest();
+    return request.user;
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidG9rZW4uZ3VhcmQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvZ2xvYmFsL2RlY29yYXRvcnMvdG9rZW4uZ3VhcmQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLDJDQUFpRztBQUlqRyxJQUFhLFVBQVUsR0FBdkIsTUFBYSxVQUFVO0lBQ2QsS0FBSyxDQUFDLFdBQVcsQ0FBQyxPQUF5QjtRQUNoRCxNQUFNLE9BQU8sR0FBRyxPQUFPLENBQUMsWUFBWSxFQUFFLENBQUMsVUFBVSxFQUFXLENBQUM7UUFDN0QsT0FBTyxDQUFDLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQztJQUN4QixDQUFDO0NBQ0YsQ0FBQTtBQUxZLFVBQVU7SUFEdEIsbUJBQVUsRUFBRTtHQUNBLFVBQVUsQ0FLdEI7QUFMWSxnQ0FBVTtBQU9WLFFBQUEsV0FBVyxHQUFHLDZCQUFvQixDQUFDLENBQUMsSUFBSSxFQUFFLE9BQXlCLEVBQUUsRUFBRTtJQUNsRixNQUFNLE9BQU8sR0FBRyxPQUFPLENBQUMsWUFBWSxFQUFFLENBQUMsVUFBVSxFQUFXLENBQUM7SUFDN0QsT0FBTyxPQUFPLENBQUMsSUFBSSxDQUFDO0FBQ3RCLENBQUMsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ2FuQWN0aXZhdGUsIGNyZWF0ZVBhcmFtRGVjb3JhdG9yLCBFeGVjdXRpb25Db250ZXh0LCBJbmplY3RhYmxlIH0gZnJvbSAnQG5lc3Rqcy9jb21tb24nO1xuaW1wb3J0IHsgUmVxdWVzdCB9IGZyb20gJ2V4cHJlc3MnO1xuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgVG9rZW5HdWFyZCBpbXBsZW1lbnRzIENhbkFjdGl2YXRlIHtcbiAgcHVibGljIGFzeW5jIGNhbkFjdGl2YXRlKGNvbnRleHQ6IEV4ZWN1dGlvbkNvbnRleHQpIHtcbiAgICBjb25zdCByZXF1ZXN0ID0gY29udGV4dC5zd2l0Y2hUb0h0dHAoKS5nZXRSZXF1ZXN0PFJlcXVlc3Q+KCk7XG4gICAgcmV0dXJuICEhcmVxdWVzdC51c2VyO1xuICB9XG59XG5cbmV4cG9ydCBjb25zdCBBY2Nlc3NUb2tlbiA9IGNyZWF0ZVBhcmFtRGVjb3JhdG9yKChkYXRhLCBjb250ZXh0OiBFeGVjdXRpb25Db250ZXh0KSA9PiB7XG4gIGNvbnN0IHJlcXVlc3QgPSBjb250ZXh0LnN3aXRjaFRvSHR0cCgpLmdldFJlcXVlc3Q8UmVxdWVzdD4oKTtcbiAgcmV0dXJuIHJlcXVlc3QudXNlcjtcbn0pO1xuIl19
